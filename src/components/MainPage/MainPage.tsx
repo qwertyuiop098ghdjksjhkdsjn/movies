@@ -33,7 +33,11 @@ function MainPage () {
                 </div>
                 <div className={styles.block}></div>
                 <ul
-                className={styles.genres}>{genres.map((el) => <li onClick={() => navigation(el.id)} className={styles.item}>{el.genre}</li>)}
+                className={styles.genres}>{genres.map((el) => <li className={styles.item}>
+                   <span onClick={() => navigation(el.id)} >
+                    {el.genre}
+                    </span> 
+                    </li>)}
                 </ul>
             </div>
         </div>

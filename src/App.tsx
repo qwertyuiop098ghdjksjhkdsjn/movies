@@ -5,6 +5,7 @@ import Search from './components/Search/Search';
 import SearchList from './components/SearchList/SearchList';
 import {Route, Routes } from 'react-router-dom';
 import OneFilmInfo from './components/OneFilmInfo/OneFilmInfo';
+import FilmsByGenre from './components/FilmsByGenre/FilmsByGenre';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route element={<MainPage/>} path='/'/>
         <Route element={<SearchList/>} path='/search/:filmName'/>
         <Route element={<OneFilmInfo/>} path='/oneFilmInfo/:chosenFilm'/>
-        <Route element={null} path='/genre/:chosenGenre'/>
+        <Route element={<FilmsByGenre/>} path='/genre/:chosenGenre'/>
       </Routes>
     </div>
   );

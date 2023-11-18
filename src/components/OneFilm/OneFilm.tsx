@@ -17,11 +17,13 @@ function OneFilm ({filmInfo}: OneFilmProps) {
     return (
         <div className={styles.film}>
             <img className={styles.picture} src={filmInfo.posterUrlPreview} alt="oneFilm"/>
-             <div>{filmInfo.nameRu}</div>
-             <div>Год: {filmInfo.year}</div>
-             <div>Длительность: {filmInfo.filmLength}</div>
-             <div>Рейтинг: {filmInfo.rating}</div>
-             <button onClick={navigation}>Подробнее</button>
+             <div className={styles.block}>
+                <div>{filmInfo.nameRu}</div>
+                <div>Год: {filmInfo.year}</div>
+                <div>Длительность: {filmInfo.filmLength}</div>
+                <div>Рейтинг: {filmInfo.rating}</div>
+             </div>
+             <button className={styles.button} onClick={navigation}>Подробнее</button>
         </div>
     )
 }

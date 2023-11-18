@@ -28,9 +28,12 @@
 }
 
 .item {
-    cursor: pointer;
     display: inline-block;
     width: 33%;
     text-align: center;
     font-size: 18px;
+}
+
+.item span {
+    cursor: pointer;
 }
