@@ -92,3 +92,11 @@ export interface SearchResultObject {
     imageUrl: string;
     previewUrl: string;
   }
+
+  export interface VideoResponse {
+    items: Array<{
+      name: string;
+      site: string;
+      url: string;
+    }>
+  }

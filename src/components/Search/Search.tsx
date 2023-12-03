@@ -14,7 +14,7 @@ function Search () {
 
     return (
         <div className={styles.doSearch}>
-            <input className={styles.input} onChange={(e) => setInput(e.target.value)} value={input} type="text" placeholder="введите название фильма"></input>
+            <input className={styles.input} onChange={(e) => setInput(e.target.value)} value={input} type="text" placeholder="название фильма"></input>
             <button onClick={doSearch}>Найти</button>
         </div>
     )

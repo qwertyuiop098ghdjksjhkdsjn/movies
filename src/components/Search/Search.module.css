@@ -27,3 +27,19 @@
     cursor: pointer;
     font-size: 17px;
 }
+
+@media screen and (max-width: 770px) {
+   .doSearch{
+    width: 80%;
+    padding-left: 7px;
+   } 
+
+   .doSearch button {
+    font-size: 15px;
+    height: 80%;
+   }
+
+   .input {
+    font-size: 16px;
+}
+}

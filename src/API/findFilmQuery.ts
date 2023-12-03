@@ -1,5 +1,6 @@
 import { error } from "console"
 import { SearchResultObject } from "../types";
+import { VideoResponse } from "../types";
 
 const baseURL = "https://kinopoiskapiunofficial.tech/api/v2.1"
 
@@ -53,6 +54,18 @@ const imageURL = "https://kinopoiskapiunofficial.tech/api/v2.2/films/"
 
 export function getPictures (id: string) {
     return fetch (imageURL + id + "/images?type=STILL&page=1", {
+        headers: {
+            'X-API-KEY': '2741155f-8083-4fdd-a48c-cb2c7f541ec8',
+            'Content-Type': 'application/json',
+        }
+    }).then((res) => res.json()).catch((error) => console.log(error))
+}
+
+
+//video
+
+export function getVideo (id: string): Promise <VideoResponse> {
+    return fetch (imageURL + id + "/videos", {
         headers: {
             'X-API-KEY': '2741155f-8083-4fdd-a48c-cb2c7f541ec8',
             'Content-Type': 'application/json',

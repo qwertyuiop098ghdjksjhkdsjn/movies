@@ -6,6 +6,7 @@ import styles from "./OneFilmInfo.module.css";
 import { getPictures } from "../../API/findFilmQuery";
 import { Image } from "../../types";
 import ImagePopUp from "../ImagePopUp/ImagePopUp";
+import { getVideo } from "../../API/findFilmQuery";
 
 function OneFilmInfo () {
 
@@ -33,21 +34,32 @@ function OneFilmInfo () {
     const [popUpImg, setPopUpImg] = useState("");
 
 
+    //state for video
+
+    // const [trailer, setTrailer] = useState("");
+
+
     function popUp (url: string) {
         setPopUpImg(url)
         console.log(url)
     }
 
-
     useEffect(() => {
         getInfo()
         getPictures(chosenFilm as string).then((res) => setImage(res.items))
+        // video()
     }, [])
     if(filmInfo == null) {
         return null
     }
       
 
+    // function video () {
+    //     getVideo(chosenFilm as string).then((res) => res.items.filter((item) => item.site === "KINOPOISK_WIDGET")).then((res) => 
+    //     {if (res.length !== 0) {
+    //         setTrailer(res[0].url)
+    //     }})
+    // }
 
     return (
         <div className={styles.oneFilm}>
@@ -63,6 +75,8 @@ function OneFilmInfo () {
                     <div>Страна: {filmInfo.countries.map((el)=> el.country).join(", ")}</div>
                     <div>Возрастное ограничение: {filmInfo.ratingAgeLimits}+ </div>
                     <div>Описание: {filmInfo.description}</div>
+                    {/* <div>{trailer}</div>
+                    <div><iframe is="x-frame-bypass" src={trailer} width="500" height="500"></iframe></div> */}
                 </div>
             </div>
             <div className={styles.pictures}>{image.slice(0, 8).map((el) => <img alt="film" src={el.previewUrl} onClick={() => popUp(el.imageUrl)}/>)}</div>

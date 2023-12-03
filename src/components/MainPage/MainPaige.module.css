@@ -2,7 +2,7 @@
 .main {
     background: url("./../../images/main.png");
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -30,4 +30,16 @@
 
 .item span {
     cursor: pointer;
+}
+
+@media screen and (max-width: 770px) {
+    .item {
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .genres {
+        margin-bottom: 20px;
+    }
+
 }

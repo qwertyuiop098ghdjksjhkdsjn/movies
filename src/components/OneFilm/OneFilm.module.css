@@ -26,3 +26,33 @@
     cursor: pointer;
     font-size: 17px;
 }
+
+@media screen and (max-width: 1150px) {
+    .film {
+        width: 30%;
+    }
+
+    .picture {
+        height: 460px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .film {
+        width: 45%;
+    }
+
+    .picture {
+        height: 460px;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .film {
+        width: 45%;
+    }
+
+    .picture {
+        height: 300px;
+    }
+}
