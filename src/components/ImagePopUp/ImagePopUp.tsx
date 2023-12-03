@@ -1,15 +1,16 @@
 import styles from "./ImagePopUp.module.css";
 
 interface Props {
-    image: string
+    image: string;
+    onClosePopUp: (url: string) => void;
 }
 
 
-function ImagePopUp ({image}: Props) {
+function ImagePopUp ({image, onClosePopUp}: Props) {
 
     return(
-        <div className={styles.photo}>
-            <img alt="filmPhoto" src={image}/>
+        <div onClick={()=>onClosePopUp("")} className={styles.photo}>
+            <img onClick={(e)=> e.stopPropagation()} alt="filmPhoto" src={image}/>
         </div>
     )
 }

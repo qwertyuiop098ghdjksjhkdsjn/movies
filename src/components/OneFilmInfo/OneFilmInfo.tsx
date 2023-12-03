@@ -66,7 +66,7 @@ function OneFilmInfo () {
                 </div>
             </div>
             <div className={styles.pictures}>{image.slice(0, 8).map((el) => <img alt="film" src={el.previewUrl} onClick={() => popUp(el.imageUrl)}/>)}</div>
-           <ImagePopUp image={popUpImg}/>
+          {popUpImg !== "" && <ImagePopUp onClosePopUp={popUp} image={popUpImg}/>}
         </div>
     )
 }
