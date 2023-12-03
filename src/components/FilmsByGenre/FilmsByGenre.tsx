@@ -1,25 +1,74 @@
 import { findFilmGenre } from "../../API/findFilmQuery"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import {useEffect, useState} from "react";
 import OneFilm from "../OneFilm/OneFilm";
-import { Film } from "../../types";
+import { filmByGenre } from "../../types";
 import styles from "./FilmsByGenre.module.css";
+import loading from "../../images/infinite-spinner (2).svg";
 
 function FilmsByGenre () {
 
     const {chosenGenre} = useParams(); 
 
-    const [films, setFilms] = useState<Film[]>([]);
+    const [films, setFilms] = useState<filmByGenre[]>([]);
+
+    const navigate = useNavigate ()
+
+    function navigation (id: number) {
+        navigate("/oneFilmInfo/" + id)
+    }
+
+    function navigateToMain () {
+        navigate ("/")
+    }
+
+    const [page, setPage] = useState(1);  //state для текущей страницы
+    const [pagesCount, setPagesCount] = useState (0); //state для количества всех страниц
 
     useEffect (() => {
+        setLoad(true)
         if (chosenGenre !== undefined) {
-            findFilmGenre(chosenGenre).then((res)=> setFilms(res.items))
+            findFilmGenre(chosenGenre, page).then((res)=> {setFilms(res.items); setPagesCount(res.totalPages); window.scrollTo(0,0)}
+    ).finally(() => setLoad(false))} 
+    }, [chosenGenre, page] )
+
+    //state for loading
+    const [load, setLoad] = useState(false);
+
+
+
+    //функция, которая записывает число страниц в массив
+
+    function pagesToArray () {
+        let array = [];
+        for (let i = 1; i <= pagesCount; i++) {
+            array.push(i)
         } 
-    }, [] )
+        return array
+    }
+
 
     return (
         <div className={styles.main}>
-            <div className={styles.movies}>{films.map((el) => <OneFilm key={el.filmId} filmInfo={el}/>)}</div>
+            <header>
+                <button className={styles.buttonMain} onClick={navigateToMain}>На главную</button>
+            </header>
+            {load && <div>
+                 <img alt="loading" className={styles.logo} src={loading}/>
+                </div>}
+            <div className={styles.movies}>{films.map((filmInfo) => 
+
+            <div className={styles.film}>
+            <img className={styles.picture} src={filmInfo.posterUrlPreview} alt="oneFilm"/>
+             <div className={styles.block}>
+                <div>{filmInfo.nameRu}</div>
+                <div>Год: {filmInfo.year}</div>
+                <div>Рейтинг: {filmInfo.ratingKinopoisk}</div>
+             </div>
+             <button className={styles.button} onClick={() => navigation(filmInfo.kinopoiskId)}>Подробнее</button>
+        </div>
+        )}</div>
+        <div className={styles.allPages}>{pagesToArray().map((el) => <button className={styles.onePageButton} onClick={() => setPage(el)}>{el}</button>)}</div>
         </div>
     )
 }

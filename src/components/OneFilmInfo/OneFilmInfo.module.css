@@ -2,7 +2,7 @@
 .oneFilm {
     background: linear-gradient(#6c81aa, #404042);
     padding: 30px;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .name {
@@ -20,7 +20,27 @@
     gap: 50px;
     align-items: flex-start;
 }
-/* 
-.button {
 
-} */
+.button {
+    padding: 5px 15px;
+    margin-bottom: 15px;
+    background-color: #7690c595;
+    border: 1px solid #1c2330;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.pictures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 30px;
+}
+
+.pictures img {
+    object-fit: contain;
+    height: 200px;
+}

@@ -7,15 +7,6 @@
     flex-direction: column;
 }
 
-/* .block {
-    position: absolute;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    background-color: rgba(59, 58, 58, 0.689);
-    width: 100vw;
-    z-index: 1;
-} */
 
 .search {
     width: 100%;
@@ -24,14 +15,17 @@
 .genres {
     width: 70%;
     margin: 0 auto;
-    background: rgba(136, 162, 214, 0.464)
+    background: rgba(136, 162, 214, 0.662);
+    border-radius: 30px;
+    padding: 20px;
 }
 
 .item {
     display: inline-block;
     width: 33%;
     text-align: center;
-    font-size: 18px;
+    font-size: 21px;
+    padding: 2px;
 }
 
 .item span {
