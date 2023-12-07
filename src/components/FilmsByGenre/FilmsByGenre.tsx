@@ -5,12 +5,18 @@ import OneFilm from "../OneFilm/OneFilm";
 import { filmByGenre } from "../../types";
 import styles from "./FilmsByGenre.module.css";
 import loading from "../../images/infinite-spinner (2).svg";
+import { useAppDispatch, useAppSelector } from "../../Store/Store";
+import { useDispatch } from "react-redux";
+import { setFilmsByGenres } from "../../Store/Slices/MovieSlice";
 
 function FilmsByGenre () {
 
     const {chosenGenre} = useParams(); 
 
-    const [films, setFilms] = useState<filmByGenre[]>([]);
+    // const [films, setFilms] = useState<filmByGenre[]>([]);
+
+    const films = useAppSelector(state => state.movies.filmsByGenres) //получение данных из store
+    const dispatch = useAppDispatch() //получили функцию, которая нужна для отправки action
 
     const navigate = useNavigate ()
 
@@ -28,7 +34,7 @@ function FilmsByGenre () {
     useEffect (() => {
         setLoad(true)
         if (chosenGenre !== undefined) {
-            findFilmGenre(chosenGenre, page).then((res)=> {setFilms(res.items); setPagesCount(res.totalPages); window.scrollTo(0,0)}
+            findFilmGenre(chosenGenre, page).then((res)=> {dispatch(setFilmsByGenres(res.items)); setPagesCount(res.totalPages); window.scrollTo(0,0)}
     ).finally(() => setLoad(false))} 
     }, [chosenGenre, page] )
 

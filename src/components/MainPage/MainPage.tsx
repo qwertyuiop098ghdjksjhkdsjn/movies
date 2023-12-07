@@ -4,13 +4,18 @@ import { findGenre } from "../../API/findFilmQuery";
 import {useState, useEffect} from "react";
 import { oneGenre } from "../../types";
 import { useNavigate } from "react-router-dom";
+import { setGenresList } from "../../Store/Slices/MovieSlice";
+import { useAppDispatch, useAppSelector } from "../../Store/Store";
 
 function MainPage () {
 
-    const [genres, setGenres] = useState<oneGenre[]>([]);
+    // const [genres, setGenres] = useState<oneGenre[]>([]);
+
+    const genres = useAppSelector(state => state.movies.genresList)
+    const dispatch = useAppDispatch()
 
     useEffect(()=> {
-        findGenre().then((res) => setGenres(res.genres))
+        findGenre().then((res) => dispatch(setGenresList(res.genres)))
     }, [])
 
     const navigate = useNavigate();
