@@ -7,6 +7,8 @@ import { getPictures } from "../../API/findFilmQuery";
 import { Image } from "../../types";
 import ImagePopUp from "../ImagePopUp/ImagePopUp";
 import { getVideo } from "../../API/findFilmQuery";
+import { useAppDispatch, useAppSelector } from "./../../Store/Store";
+import { setOneFilmInfo } from "../../Store/Slices/MovieSlice";
 
 function OneFilmInfo () {
 
@@ -18,10 +20,15 @@ function OneFilmInfo () {
 
     const {chosenFilm} = useParams (); // film id
 
-    const [filmInfo, setFilmInfo] = useState<OneFilm | null>(null)
+    // const [filmInfo, setFilmInfo] = useState<OneFilm | null>(null)
+
+    const filmInfo = useAppSelector(state => state.movies.oneFilmInfo);
+    const dispatch = useAppDispatch()
+
+
 
     function getInfo () {
-        findOneFilmInfo (chosenFilm as string).then((res) => setFilmInfo(res.data))
+        findOneFilmInfo (chosenFilm as string).then((res) => dispatch(setOneFilmInfo(res.data)))
     }
 
     //state for pictures

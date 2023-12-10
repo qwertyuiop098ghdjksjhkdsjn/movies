@@ -5,12 +5,17 @@ import styles from "./SearchList.module.css";
 import { Film } from "../../types";
 import OneFilm from "../OneFilm/OneFilm";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../Store/Store";
+import { setSearchFilms } from "../../Store/Slices/MovieSlice";
 
 function SearchList () {
 
     const {filmName} = useParams ();
 
-    const [films, setFilms] = useState<Film[]>([]); //в useState хранится информация о фильмах, когда выполняется запрос
+    // const [films, setFilms] = useState<Film[]>([]); //в useState хранится информация о фильмах, когда выполняется запрос
+
+    const films = useAppSelector(state => state.movies.searchFilms);
+    const dispatch = useAppDispatch()
 
     const [page, setPage] = useState(1);  //state для текущей страницы
     const [pagesCount, setPagesCount] = useState (0); //state для количества всех страниц
@@ -19,7 +24,7 @@ function SearchList () {
 
     useEffect(() => {
         if(filmName) {
-            findFilm(filmName, page).then((res)=> {setFilms(res.films); setPagesCount(res.pagesCount); 
+            findFilm(filmName, page).then((res)=> {dispatch(setSearchFilms(res.films)); setPagesCount(res.pagesCount); 
             if(res.films.length === 0) {
                 alert("Ничего не найдено!")
             }
