@@ -46,6 +46,10 @@
     height: 200px;
 }
 
+.description {
+    margin-top: 20px;
+}
+
 @media screen and (max-width: 800px) {
     .img {
         width: 50%

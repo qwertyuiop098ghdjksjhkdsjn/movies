@@ -81,7 +81,7 @@ function OneFilmInfo () {
                     <div>Тип: {filmInfo.type}</div>  
                     <div>Страна: {filmInfo.countries.map((el)=> el.country).join(", ")}</div>
                     <div>Возрастное ограничение: {filmInfo.ratingAgeLimits}+ </div>
-                    <div>Описание: {filmInfo.description}</div>
+                    <div className={styles.description}>Описание: {filmInfo.description}</div>
                     {/* <div>{trailer}</div>
                     <div><iframe is="x-frame-bypass" src={trailer} width="500" height="500"></iframe></div> */}
                 </div>
